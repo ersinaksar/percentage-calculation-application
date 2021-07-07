@@ -12,8 +12,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController _meblag;
-  TextEditingController _yuzde;
+  //var _restoranAdresiController = TextEditingController();
+  var _meblagController = TextEditingController();
+  var _yuzdeController = TextEditingController();
+  //TextEditingController _meblagController;
+  //TextEditingController _yuzdeController;
+  String _meblag;
+  String _yuzde;
   //TextEditingController _sonuc;
   double _sonuc = 0.0;
   int _hesapYontemi;
@@ -79,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        controller: _meblag,
+        controller: _meblagController,
         keyboardType:
             TextInputType.number, //bu satır input kalvyesini sayı yapıyor
         inputFormatters: <TextInputFormatter>[
@@ -103,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        controller: _yuzde,
+        controller: _yuzdeController,
         keyboardType:
             TextInputType.number, //bu satır input kalvyesini sayı yapıyor
         inputFormatters: <TextInputFormatter>[
@@ -134,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Text(
         sonucGoster,
         style: TextStyle(
-            fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.bold),
+            fontSize: 40.0, color: Colors.black, fontWeight: FontWeight.bold),
       ),
       /*TextFormField(
         //controller: _meblag,
@@ -229,6 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onChanged: (t) {
                     setState(() {
                       _hesapYontemi = t;
+                      print("_hesapYontemi: " + _hesapYontemi.toString());
                     });
                   },
                 ),
@@ -284,7 +290,7 @@ class _MyHomePageState extends State<MyHomePage> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         onPressed: () async {
-          _sonuc = _hesapla();
+          _sonuc = await _hesapla();
           setState(() {
             _buildSonucGoster();
           });
@@ -297,13 +303,14 @@ class _MyHomePageState extends State<MyHomePage> {
     var meblag;
     var yuzde;
     var sonuc;
-    if (_meblag.text.trim().length > 0) {
-      if (_yuzde.text.trim().length > 0) {
-        meblag = _meblag.text;
-        meblag = int.parse(meblag);
+    print("_meblag: " + _meblagController.toString());
+    if (_meblagController.text.trim().length > 0) {
+      if (_yuzdeController.text.trim().length > 0) {
+        _meblag = _meblagController.text;
+        meblag = int.parse(_meblag);
 
-        yuzde = _yuzde.text;
-        yuzde = int.parse(yuzde);
+        _yuzde = _yuzdeController.text;
+        yuzde = int.parse(_yuzde);
         if (meblag > 0) {
           if (yuzde > 0) {
             print("meblag 0 dan büyük: " + meblag.toString());
