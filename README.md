@@ -1,2 +1,2 @@
 # percentage-calculation-application
-percentage calculation application in flutter
+ The application has an intuitive and user-friendly interface that makes it easy for users to input numbers and perform calculations. The code implements the necessary mathematical operations for percentage calculations and provides an accurate result. The user can input the base number and the percentage value, and the app calculates the percentage result instantly. The application is suitable for users who need to calculate percentages frequently, such as students, professionals, or anyone who needs to perform financial calculations.
